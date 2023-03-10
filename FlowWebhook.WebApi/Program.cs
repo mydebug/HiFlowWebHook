@@ -9,7 +9,7 @@ namespace FlowWebhook.WebApi
         {
             var builder = WebApplication.CreateBuilder(args);
             var app = builder.Build();
-            // 发送数据到hiflow webhook
+            // 发送数据到hiflow webhook 
             app.MapPost("/{id}", async ([FromRoute] string id, [FromBody] object o) =>
             {
                 var webHookUrl = "https://api.hiflow.tencent.com/engine/webhook/31/" + id;
