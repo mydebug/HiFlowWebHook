@@ -30,6 +30,12 @@ namespace FlowWebhook.WebApi
             {
                 return cache.Get(name);
             });
+            // É¾³ı»º´æÊı¾İ
+            app.MapDelete("cache/{name}", ([FromRoute] string name) =>
+            {
+                cache.Remove(name);
+                return Results.Ok();
+            });
 
             app.MapGet("/", () => { return "hello,chendaye"; });
             app.Run();
