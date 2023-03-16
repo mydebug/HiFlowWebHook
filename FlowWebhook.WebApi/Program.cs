@@ -11,26 +11,26 @@ namespace FlowWebhook.WebApi
             builder.Services.AddMemoryCache();
             var app = builder.Build();
             var cache = app.Services.GetService<IMemoryCache>();
-            // ·¢ËÍÊý¾Ýµ½webhook 
+            // å‘é€æ•°æ® 
             app.MapPost("/{id}", async ([FromRoute] string id, [FromBody] object o) =>
             {
                 await SendDataAsync(id, o);
                 return Results.Ok();
             });
 
-            // Ìí¼Ó»º´æÊý¾Ý
+            // æ·»åŠ ç¼“å­˜æ•°æ®
             app.MapPost("cache/{name}", ([FromRoute] string name, [FromBody] object o) =>
             {
                 cache.Set(name, o);
                 return Results.Ok();
             });
 
-            // »ñÈ¡»º´æÊý¾Ý
+            // èŽ·å–ç¼“å­˜æ•°æ®
             app.MapGet("cache/{name}", ([FromRoute] string name) =>
             {
                 return cache.Get(name);
             });
-            // É¾³ý»º´æÊý¾Ý
+            // åˆ é™¤ç¼“å­˜æ•°æ®
             app.MapDelete("cache/{name}", ([FromRoute] string name) =>
             {
                 cache.Remove(name);
